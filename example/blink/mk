@@ -1,0 +1,9 @@
+# build
+scons -c
+scons
+# extract binary from elf
+arm-none-eabi-objcopy -O binary rtthread.elf rtthread.bin
+# uf2 family id 0xf35c900d load address 0x90000000
+bin2uf2 -f 0xf35c900d -o rtthread.uf2 0x90000000 rtthread.bin
+# flash
+cp rtthread.uf2 /media/$USER/CherryUF2/CURRENT.UF2

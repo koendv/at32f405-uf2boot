@@ -1,0 +1,27 @@
+diff --git a/bsp/at32/at32f405-start/board/linker_scripts/link.lds b/bsp/at32/at32f405-start/board/linker_scripts/link.lds
+index 7caef989e3..2b2233ee1d 100644
+--- a/bsp/at32/at32f405-start/board/linker_scripts/link.lds
++++ b/bsp/at32/at32f405-start/board/linker_scripts/link.lds
+@@ -5,7 +5,7 @@
+ /* Program Entry, set to mark it as "used" and avoid gc */
+ MEMORY
+ {
+-    ROM (rx) : ORIGIN = 0x08000000, LENGTH = 256k /* 256KB flash */
++    ROM (rx) : ORIGIN = 0x90000000, LENGTH =  16M /* 16MB flash */
+     RAM (rw) : ORIGIN = 0x20000000, LENGTH =  96k /* 96K sram */
+ }
+ ENTRY(Reset_Handler)
+diff --git a/bsp/at32/at32f405-start/board/src/board.c b/bsp/at32/at32f405-start/board/src/board.c
+index be830ff82b..6d93353060 100644
+--- a/bsp/at32/at32f405-start/board/src/board.c
++++ b/bsp/at32/at32f405-start/board/src/board.c
+@@ -12,6 +12,9 @@
+ 
+ void system_clock_config(void)
+ {
++  /*  Set interrupt vector table address */
++  SCB->VTOR = 0x90000000;
++
+   /* reset crm */
+   crm_reset();
+ 

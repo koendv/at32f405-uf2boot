@@ -1,0 +1,12 @@
+#!/bin/bash
+# download firmware to at32f4105 using black magic probe 
+# patch black magic probe with at32f405.patch first
+arm-none-eabi-gdb -q \
+-ex "set confirm off" \
+-ex "target ext /dev/ttyBmpGdb" \
+-ex "mon rtt" \
+-ex "mon swd" \
+-ex "at 1" \
+-ex "file .build/at32f405rcu7_qspi_hs/cherryuf2_at32f405rcu7_qspi_hs.elf" \
+-ex "lo" \
+-ex "r"
