@@ -39,7 +39,9 @@ extern "C" {
 #endif
 
 // Double Reset tap to enter DFU
-#define CHERRYUF2_DFU_DOUBLE_TAP 1
+#ifndef CHERRYUF2_DFU_DOUBLE_TAP
+#    define CHERRYUF2_DFU_DOUBLE_TAP 1
+#endif
 
 #ifdef __cplusplus
 }
