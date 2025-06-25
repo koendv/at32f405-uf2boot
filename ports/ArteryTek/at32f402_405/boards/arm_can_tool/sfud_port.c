@@ -109,6 +109,7 @@ sfud_err sfud_spi_port_init(sfud_flash *flash) {
 
     qspi_xip_enable(QSPI1, FALSE);
     qspi1_flash_reset();
+    delay_ms(10);
     qspi_xip_enable(QSPI1, TRUE);
 
     flash->spi.wr        = spi_write_read;
