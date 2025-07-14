@@ -78,7 +78,7 @@ typedef enum
   NO_BUTTON                              = 1
 } button_type;
 
-#define USER_BUTTON_PIN                  GPIO_PINS_12
+#define USER_BUTTON_PIN                  GPIO_PINS_10
 #define USER_BUTTON_PORT                 GPIOB
 #define USER_BUTTON_CRM_CLK              CRM_GPIOB_PERIPH_CLOCK
 
