@@ -27,6 +27,7 @@
 #include "qspi1.h"
 #include "sfud_cfg.h"
 #include <sfud.h>
+void ram_parity_check(void);
 
 static bool xip_running = false;
 
@@ -41,10 +42,23 @@ void board_init(void) {
     delay_init();
     at32_button_init();
     uart_print_init(115200);
+    ram_parity_check();
     /* use qspi flash for app */
     qspi1_init();
     qspi1_xip_init();
     xip_running = true;
+}
+
+//--------------------------------------------------------------------+
+// check amount of ram. ram is 96 kbyte with parity, 102 kbyte without.
+//--------------------------------------------------------------------+
+
+void ram_parity_check(void)
+{
+    crm_periph_clock_enable(CRM_SCFG_PERIPH_CLOCK, TRUE);
+    if((flash_ssb_status_get()&0x80) == (uint8_t)USD_RAM_PRT_CHK_ENABLE) {
+        printf("ram parity enabled\n");
+    }
 }
 
 //--------------------------------------------------------------------+
