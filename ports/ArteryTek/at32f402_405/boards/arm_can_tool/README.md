@@ -21,24 +21,6 @@ $ make BOARD=arm_can_tool all
 
 This gives .elf and .bin files.
 
-## dfu file
-
-To convert elf to dfu, first build the `elf2dfuse` tool:
-
-```
-cd at32f405-uf2boot/ports/ArteryTek/elf2dfuse
-make
-```
-
-Then convert .elf to .dfu
-
-```
-cd at32f405-uf2boot/ports/ArteryTek/at32f402_405/.build/arm_can_tool/
-elf2dfuse cherryuf2_arm_can_tool.elf cherryuf2_arm_can_tool.dfu
-```
-
-This creates the file `cherryuf2_arm_can_tool.dfu` file in the directory `.build/arm_can_tool`
-
 ## installing the bootloader
 
 Install the bootloader 
@@ -64,7 +46,7 @@ Install the bootloader
 - With the board in DFU, use the following command:
 
 ```shell
-sudo dfu-util -a 0  -R -D cherryuf2_arm_can_tool.dfu
+sudo dfu-util -a 0 -d 2e3c:df11 --dfuse-address 0x08000000 -D cherryuf2_arm_can_tool.bin
 ```
 
 The terminal shows

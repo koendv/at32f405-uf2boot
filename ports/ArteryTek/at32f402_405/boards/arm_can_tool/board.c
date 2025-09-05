@@ -57,7 +57,9 @@ void ram_parity_check(void)
 {
     crm_periph_clock_enable(CRM_SCFG_PERIPH_CLOCK, TRUE);
     if((flash_ssb_status_get()&0x80) == (uint8_t)USD_RAM_PRT_CHK_ENABLE) {
-        printf("ram parity enabled\n");
+        printf("96k ram\n"); // ram parity enabled
+    } else {
+        printf("102k ram\n"); // ram parity disabled
     }
 }
 
