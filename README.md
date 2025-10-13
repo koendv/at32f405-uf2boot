@@ -42,6 +42,10 @@ Two actions are defined: reading and writing.
 
 The [example](example/README.md) directory contains an app to blink a led. 
 
+## arm can tool
+
+For "arm can tool", please read the [README](ports/ArteryTek/at32f402_405/boards/arm_can_tool/README.md) of the board. 
+
 ## Installation
 
 The uf2 bootloader for the external flash is installed in the internal flash.
