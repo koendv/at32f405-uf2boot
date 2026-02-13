@@ -57,7 +57,7 @@ static sfud_err spi_write_read(const sfud_spi *spi, const uint8_t *write_buf, si
             result = SFUD_ERR_TIMEOUT;
         }
     } else {
-        SFUD_INFO("error: qspi no write data\n");
+        SFUD_INFO("error: qspi no write data\r\n");
         result = SFUD_ERR_TIMEOUT;
     }
 
@@ -139,7 +139,7 @@ void sfud_log_debug(const char *file, const long line, const char *format, ...) 
     printf("[SFUD](%s:%ld) ", file, line);
     /* must use vprintf to print */
     vsnprintf(log_buf, sizeof(log_buf), format, args);
-    printf("%s\n", log_buf);
+    printf("%s\r\n", log_buf);
     va_end(args);
 }
 
@@ -154,9 +154,9 @@ void sfud_log_info(const char *format, ...) {
 
     /* args point to the first variable parameter */
     va_start(args, format);
-    printf("[SFUD]");
+    printf("[SFUD] ");
     /* must use vprintf to print */
     vsnprintf(log_buf, sizeof(log_buf), format, args);
-    printf("%s\n", log_buf);
+    printf("%s\r\n", log_buf);
     va_end(args);
 }

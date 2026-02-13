@@ -52,13 +52,13 @@ int main(void) {
 
     // if not DFU mode, jump to App
     if (!check_dfu_mode()) {
-        printf("app\n");
+        printf("app\r\n");
         board_app_jump();
         while (1) {
         }
     }
 
-    printf("dfu\n");
+    printf("dfu\r\n");
     board_dfu_init();
     board_flash_init();
     uf2_init();

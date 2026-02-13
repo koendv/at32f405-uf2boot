@@ -57,9 +57,9 @@ void ram_parity_check(void)
 {
     crm_periph_clock_enable(CRM_SCFG_PERIPH_CLOCK, TRUE);
     if((flash_ssb_status_get()&0x80) == (uint8_t)USD_RAM_PRT_CHK_ENABLE) {
-        printf("96k ram\n"); // ram parity enabled
+        printf("\r\n96k ram\r\n"); // ram parity enabled
     } else {
-        printf("102k ram\n"); // ram parity disabled
+        printf("\r\n102k ram\r\n"); // ram parity disabled
     }
 }
 
@@ -86,13 +86,13 @@ bool board_button_pressed(void) {
 
 void board_flash_init(void) {
     if (sfud_init()) {
-        printf("Error: sfud_init fail\n");
+        printf("Error: sfud_init fail\r\n");
         board_led_blink();
         return;
     }
     sfud_dev = sfud_get_device(0);
     if (sfud_dev == NULL) {
-        printf("Error: sfud_get_device fail\n");
+        printf("Error: sfud_get_device fail\r\n");
         board_led_blink();
         return;
     }
@@ -110,7 +110,7 @@ void board_flash_read(uint32_t addr, void *buffer, uint32_t len) {
 }
 
 void board_flash_flush(void) {
-    printf("\n");
+    printf("\r\n");
 }
 
 void board_flash_write(uint32_t addr, void const *data, uint32_t len) {
@@ -119,12 +119,12 @@ void board_flash_write(uint32_t addr, void const *data, uint32_t len) {
         printf(".");
         board_led_write(addr / BOARD_SECTOR_SIZE & 0x1); // blink led
         if (xip_running && sfud_dev && sfud_erase_write(sfud_dev, addr - FLASH_BASE_ADDR, len, data)) {
-            printf("Error: sfud_erase_write fail\n");
+            printf("Error: sfud_erase_write fail\r\n");
             board_led_blink();
         }
     } else {
         if (xip_running && sfud_dev && sfud_write(sfud_dev, addr - FLASH_BASE_ADDR, len, data)) {
-            printf("Error: sfud_write fail\n");
+            printf("Error: sfud_write fail\r\n");
             board_led_blink();
         }
     }
@@ -132,7 +132,7 @@ void board_flash_write(uint32_t addr, void const *data, uint32_t len) {
 
 void board_flash_erase_app(void) {
     if (xip_running && sfud_dev && sfud_chip_erase(sfud_dev)) {
-        printf("Error: sfud_chip_erase fail\n");
+        printf("Error: sfud_chip_erase fail\r\n");
         board_led_blink();
     }
 }
